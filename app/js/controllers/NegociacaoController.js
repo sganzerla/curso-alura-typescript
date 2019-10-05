@@ -6,7 +6,9 @@ class NegociacaoController {
     }
     adiciona(event) {
         event.preventDefault();
-        const negociacao = new Negociacao(this._inputData.value, this._inputQuantidade.value, this._inputValor.value);
+        const negociacao = new Negociacao(
+        //muda hífen por vírgula
+        new Date(this._inputData.value.replace(/-/g, ',')), parseInt(this._inputQuantidade.value), parseFloat(this._inputValor.value));
         console.log(negociacao.quantidade + 20);
     }
 }
