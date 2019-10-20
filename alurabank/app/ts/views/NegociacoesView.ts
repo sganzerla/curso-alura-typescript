@@ -1,10 +1,6 @@
-class NegociacoesView {
+class NegociacoesView extends View {
 
-  private _elemento: Element;
-  constructor(seletor: string) {
-    this._elemento = document.querySelector(seletor);
-  }
-
+  
   update(model: Negociacoes): void {
     // propriedade setter do Dom que renderiza um template html recebido
     this._elemento.innerHTML = this.template(model);
