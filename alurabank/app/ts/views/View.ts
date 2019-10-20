@@ -3,6 +3,7 @@ abstract class View<T> {
     private _elemento: JQuery;
 
     constructor(seletor: string) {
+        console.log(seletor);
 
         this._elemento = $(seletor);
     }

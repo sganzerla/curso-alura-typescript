@@ -9,11 +9,8 @@ class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
     adiciona(event) {
-        // impedir o carregamento da página após o evento
         event.preventDefault();
-        const negociacao = new Negociacao(
-        // converte formato string para date substituindo hífen pela vírgula
-        new Date(this._inputData.val().replace(/-/g, ',')), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
+        const negociacao = new Negociacao(new Date(this._inputData.val().replace(/-/g, ',')), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
         this._negociacoes.adiciona(negociacao);
         this._negociacoesView.update(this._negociacoes);
         this._mensagemView.update('Negociação adicionada com sucesso');
