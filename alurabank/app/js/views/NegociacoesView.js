@@ -1,8 +1,4 @@
 class NegociacoesView extends View {
-    update(model) {
-        // propriedade setter do Dom que renderiza um template html recebido
-        this._elemento.innerHTML = this.template(model);
-    }
     template(model) {
         return `
     <table class="table table-hover table-bordered">

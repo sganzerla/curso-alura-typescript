@@ -1,10 +1,4 @@
-class MensagemView extends View {
-
- 
-  update(model: string): void {
-    // propriedade setter do Dom que renderiza um template html recebido
-    this._elemento.innerHTML = this.template(model);
-  }
+class MensagemView extends View<string> {
 
   template(model: string): string {
     return `
