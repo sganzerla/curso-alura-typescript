@@ -1,3 +1,5 @@
 api/node_modules/*
 alurabank/node_modules/*  
+alurabank/node_modules/*  
+alurabank/package-lock.json
 alurabank/app/js/*  
