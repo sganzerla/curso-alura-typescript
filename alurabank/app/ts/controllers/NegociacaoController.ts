@@ -18,8 +18,8 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
 
-    @logarTempoDeExecucao()
-    adiciona(event: Event) {
+    @logarTempoDeExecucao(true)
+    adiciona(event: Event): void {
 
         // impedir o carregamento da página após o evento
         event.preventDefault();
