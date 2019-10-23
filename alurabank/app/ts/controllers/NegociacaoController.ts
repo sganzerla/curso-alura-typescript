@@ -1,6 +1,7 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacoes, Negociacao, NegociacaoParcial } from "../models/index";
 import { logarTempoDeExecucao, domInject, timerButtonThrottle } from "../helpers/decorators/index";
+import { NegociacaoService, ResponseHandler } from "../service/index";
 
 export class NegociacaoController {
 
@@ -15,6 +16,7 @@ export class NegociacaoController {
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView', true);
     private _mensagemView = new MensagemView('#mensagemView');
+    private _service = new NegociacaoService();
 
     constructor() {
         // buscar elementos do dom no construtor é um desperdício de recursos.
@@ -57,24 +59,17 @@ export class NegociacaoController {
 
     @timerButtonThrottle(500)
     importaDados() {
-        function isOk(res: any) {
-            if (res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }
+
+        const isOk: ResponseHandler = (res: Response) => {
+            if (res.ok) return res;
+            throw new Error(res.statusText);
         }
 
-        fetch('http://localhost:8080/dados')
-            .then(res => isOk(res))
-            .then(res => res.json())
-            .then((dados: NegociacaoParcial[]) => {
-                dados
-                    .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
-                    .forEach(negociacao => this._negociacoes.adiciona(negociacao))
-                this._negociacoesView.update(this._negociacoes);
-            })
-            .catch(err => console.log(err));
+        this._service.obterNegociacoes(isOk)
+            .then(negociacoes => negociacoes.forEach(negociacao =>
+                this._negociacoes.adiciona(negociacao)));
+
+        this._negociacoesView.update(this._negociacoes);
 
     }
 }
