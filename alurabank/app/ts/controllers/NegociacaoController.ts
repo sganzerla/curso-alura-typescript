@@ -26,7 +26,7 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
 
-   // @logarTempoDeExecucao(true)
+    // @logarTempoDeExecucao(true)
     adiciona(event: Event): void {
 
         // impedir o carregamento da página após o evento
@@ -55,6 +55,28 @@ export class NegociacaoController {
 
     private _ehDiaUtil(data: Date) {
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
+    }
+    importaDados() {
+        function isOk(res: any) {
+            if (res.ok) {
+                return res;
+            } else {
+                throw new Error(res.statusText);
+            }
+        }
+
+        fetch('http://localhost:8080/dados')
+            .then(res => isOk(res))
+            .then(res => res.json())
+            .then((dados: any[]) => {
+                dados
+                    .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
+                .forEach(negociacao => this._negociacoes.adiciona(negociacao))
+                this._negociacoesView.update(this._negociacoes);
+            })
+            .catch(err => console.log(err));
+
+
     }
 }
 
