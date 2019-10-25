@@ -1,5 +1,6 @@
 // Union Types: na váriavel de parâmetro ou no retorno do método podem ser declarados mais de um tipo ao mesmo tempo
-function processaToken(token: string | number) {
+type MeuToken =  string | number;
+function processaToken(token: MeuToken) {
 
     if (typeof (token) === 'string') {
 
