@@ -2,6 +2,7 @@ import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacoes, Negociacao, NegociacaoParcial } from "../models/index";
 import { logarTempoDeExecucao, domInject, timerButtonThrottle } from "../helpers/decorators/index";
 import { NegociacaoService, ResponseHandler } from "../service/index";
+import { imprime } from "../helpers/index";
 
 export class NegociacaoController {
 
@@ -47,7 +48,11 @@ export class NegociacaoController {
             parseFloat(this._inputValor.val())
         );
 
+
+
         this._negociacoes.adiciona(negociacao);
+
+        imprime(negociacao, this._negociacoes);
 
         this._negociacoesView.update(this._negociacoes);
         this._mensagemView.update('Negociação adicionada com sucesso!');
