@@ -1,6 +1,7 @@
 import { Imprimivel } from "./Imprimivel";
 import { Negociacao } from "./Negociacao";
 export class Negociacoes implements Imprimivel {
+    
     paraTexto(): void {
         console.log(JSON.stringify(this._negociacoes));
     }

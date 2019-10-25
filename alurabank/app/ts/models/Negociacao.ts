@@ -1,11 +1,11 @@
 import { Imprimivel } from "./index";
 
-export class Negociacao extends Imprimivel {
+export class Negociacao implements Imprimivel {
 
     // para impedir que o valor de uma propriedade seja alterado depois de gerado pelo construtor
     // deve-se substituir modificar de acesso private por readonly 
     constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {
-        super();
+      
     }
 
     get volume() {
