@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "gatitobook"
+    }
+  },
+  "defaultProject": "gatitobook",
+  "cli": {
+    "analytics": "1843b099-29d8-41f1-aa6b-f28862649690"
+  }
 }
