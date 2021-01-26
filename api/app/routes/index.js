@@ -1,9 +1,5 @@
-/* Código simplório, apenas para fornecer o serviço para a aplicação */
+const commentRoutes = require('./comment')
+    ,photoRoutes = require('./photo')
+    , userRoutes = require('./user');
 
-var api = require('../api');
-
-module.exports  = function(app) {
-        
-    app.route('/dados')
-        .get(api.dados);          
-};
+module.exports = { commentRoutes, photoRoutes, userRoutes };
