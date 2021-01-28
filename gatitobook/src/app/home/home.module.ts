@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './new-user/new-user.component';
 
 
@@ -16,6 +16,7 @@ import { NewUserComponent } from './new-user/new-user.component';
     HomeRoutingModule,
     FormsModule,
     MessageModule,
+    ReactiveFormsModule,
   ],
   exports: [
     HomeComponent,
