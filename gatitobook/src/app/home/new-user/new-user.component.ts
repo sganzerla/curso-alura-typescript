@@ -1,6 +1,6 @@
 import { NewUserService } from './new-user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewUser } from './new-user';
 
 @Component({
@@ -19,8 +19,8 @@ export class NewUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.newUserForm = this.formBuilder.group({
-      emai: [''],
-      fullName: [''],
+      email: ['', [Validators.required, Validators.email]],
+      fullName: ['', [Validators.required, Validators.minLength(4)]],
       userName: [''],
       password: ['']
     });
@@ -29,6 +29,7 @@ export class NewUserComponent implements OnInit {
 
   cadastrar(): void {
     const newUser = this.newUserForm.getRawValue() as NewUser;
+    console.log(newUser);
   }
 
 }
