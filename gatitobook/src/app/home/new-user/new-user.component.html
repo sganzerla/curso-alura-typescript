@@ -4,7 +4,8 @@
   <div class="form-group">
     <input placeholder="e-mail" class="form-control" formControlName="email" />
   </div>
-  <app-message message="Email obrigatório" *ngIf="newUserForm.get('email')?.errors?.required
+  <app-message message="Email obrigatório"
+  *ngIf="newUserForm.get('email')?.errors?.required
   && newUserForm.get('email')?.touched"></app-message>
   <app-message message="Email com formato inválido" *ngIf="newUserForm.get('email')?.errors?.email
   && newUserForm.get('email')?.touched"></app-message>
@@ -18,6 +19,7 @@
   </div>
   <app-message message="Usuário deve estar com letra minúscula"
     *ngIf="newUserForm.get('userName')?.errors?.lowercase && newUserForm.get('userName')?.touched"></app-message>
+  <app-message message="Usuário já existe" *ngIf="newUserForm.get('userName')?.errors?.existingUser"></app-message>
   <div class="form-group">
     <input type="password" placeholder="Senha" class="form-control" formControlName="password" />
   </div>

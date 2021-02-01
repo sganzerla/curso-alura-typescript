@@ -17,5 +17,9 @@ export class NewUserService {
     return this.http.post<NewUser>(this.path + '/user/signup', user);
   }
 
+  userExists(userName: string): Observable<boolean>{
+    return this.http.get<boolean>(`${this.path}/user/exists/${userName}`);
+  }
+
 
 }
