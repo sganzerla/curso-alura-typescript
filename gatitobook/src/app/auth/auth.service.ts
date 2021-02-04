@@ -14,17 +14,15 @@ export class AuthService {
     private service: UserService) { }
 
   authenticate(user: string, password: string): Observable<HttpResponse<any>> {
-    return this.httpClient.post('http://localhost:3000/user/login', {
-      userName: user, password
-    },
+    return this.httpClient.post(
+      'http://localhost:3000/user/login',
+      { userName: user, password },
       { observe: 'response' }
     ).pipe(
       tap((res) => {
         const authToken = res.headers.get('x-access-token') ?? '';
         this.service.saveToken(authToken);
       })
-    )
-
-      ;
+    );
   }
 }
